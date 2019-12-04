@@ -24,10 +24,11 @@ MongoClient.connect('mongodb://localhost:27017/', function (err, client) {
         {
             fromCache = true;
             router.get('/', function(req, res, next) {
-                res.render('ps6', {name: `${resp.name}`,
-                    weight: `${resp.weight}`,
-                    height: `${resp.height}`,
-                    fromCache: `${fromCache}`});
+                res.json([resp, resp, resp])
+                // res.render('ps6', {name: `${resp.name}`,
+                //     weight: `${resp.weight}`,
+                //     height: `${resp.height}`,
+                //     fromCache: `${fromCache}`});
             });
         }
         else
@@ -46,7 +47,7 @@ MongoClient.connect('mongodb://localhost:27017/', function (err, client) {
                     //console.log(JSON.parse(body.toString()));
                     //console.log(JSON.parse(data));
                     let d = JSON.parse(data);
-                    let obj = {'name':d.forms[0].name, 'weight':d.weight, 'height':d.height};
+                    let obj = {'name':d.forms[0].name, 'weight':d.weight, 'height':d.height}
                     MongoClient.connect('mongodb://localhost:27017/', function (err, client) {
                         if (err) throw err;
 
@@ -57,16 +58,18 @@ MongoClient.connect('mongodb://localhost:27017/', function (err, client) {
                         })
                     });
                     router.get('/', function(req, res, next) {
-                        res.render('ps6', {name: `${obj.name}`,
-                            weight: `${obj.weight}`,
-                            height: `${obj.height}`,
-                            fromCache: `${fromCache}`});
+                        res.json([obj, obj, obj]);
+                        // res.render('ps6', {name: `${obj.name}`,
+                        //     weight: `${obj.weight}`,
+                        //     height: `${obj.height}`,
+                        //     fromCache: `${fromCache}`});
                     });
 
                 });
             });
 
             req.end();
+
         }
     })
 });
