@@ -1,0 +1,21 @@
+<form [formGroup]="contactFormGroup" (ngSubmit)="onSubmit()">
+
+  <label>Name:
+    <input #inputData type="text" formControlName="name" >
+  </label>
+  <!--  <input #theBox type="text" (keyup)="0">-->
+  <!--  <br/>-->
+  <!--  <button (click)="theBox.value = upperCase(theBox.value)">To upper case</button>-->
+  <!--  <p> Value: {{theBox.value}} </p>-->
+  <button type="submit" [disabled]="!contactFormGroup.valid" (click)="getData(inputData.value)">Query!</button>
+
+  <div *ngIf="contactFormGroup.get('name').errors">
+    Name form currently has errors
+  </div>
+</form>
+
+<!--Status: {{contactFormGroup.valid}}<br/>-->
+
+<br>
+<app-display [queryData]= "data" [toDisplay]="display"></app-display>
+<!--<p>form works!</p>-->

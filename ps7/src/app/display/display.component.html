@@ -1,0 +1,11 @@
+<h2>Data to be displayed below:</h2>
+<div *ngIf="!toDisplay"> Please enter a query</div>
+<div *ngIf="toDisplay">
+  <div *ngFor="let d of queryData | async">
+    {{d | json}}
+  </div>
+  <br>
+  <div>
+<!--    {{queryData}}-->
+  </div>
+</div>
